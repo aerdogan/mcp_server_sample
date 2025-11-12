@@ -1,0 +1,20 @@
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mcp_server_sample:latest
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Gerekirse ortam değişkenleri ekle
+      # Örneğin: MCP_TRANSPORT=streamable-http
+      #          MCP_HOST=0.0.0.0
+      #          MCP_PORT=8000
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8000
+    volumes:
+      # Kod üzerinde geliştirme yapılacaksa host kodunu mount edebilirsin
+      # - ./src:/app
+    # depends_on: []
