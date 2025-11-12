@@ -4,7 +4,7 @@ from models import Student, Classroom
 def register_student_tools(mcp):
 
     @mcp.tool()
-    def create_student(name: str, age: int, classroom_id: int):
+    def create_student(name: str, age: int, classroom_id: int, sessionId: str = None, action: str = None, chatInput: str = None, toolCallId: str = None):
         """Bir sınıfa öğrenci ekler."""
         db = SessionLocal()
         classroom = db.query(Classroom).filter(Classroom.id == classroom_id).first()
@@ -19,7 +19,7 @@ def register_student_tools(mcp):
         return {"id": student.id, "name": student.name, "age": student.age, "classroom_id": classroom_id}
 
     @mcp.tool()
-    def list_students(classroom_id: int = None):
+    def list_students(classroom_id: int = None, sessionId: str = None, action: str = None, chatInput: str = None, toolCallId: str = None):
         """Tüm öğrencileri veya bir sınıfa ait öğrencileri listeler."""
         db = SessionLocal()
         query = db.query(Student)
