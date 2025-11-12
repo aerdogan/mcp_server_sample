@@ -1,9 +1,8 @@
-# client.py
 import asyncio
 from fastmcp import Client
 
 async def main():
-    client = Client("http://localhost:8000/mcp")  # URL doğrudan string olmalı
+    client = Client("http://localhost:8000/mcp")
     async with client:
         await client.ping()
         tools = await client.list_tools()
